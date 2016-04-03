@@ -4,7 +4,7 @@
 [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/sindresorhus/xo)
 [![npm version](https://badge.fury.io/js/create-element-by-selector.js.svg)](https://badge.fury.io/js/create-element-by-selector.js)
 
-Selector parser
+Create element by selector
 
 ## Usage
 
