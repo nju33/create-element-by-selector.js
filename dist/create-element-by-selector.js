@@ -79,16 +79,28 @@
 
   function createElementBySelector(selector) {
     var result = selectorParse(selector);
-
     var el = document.createElement(result.tag);
 
-    Object.keys(result).filter(function (attr) {
-      return ['tag', 'classList'].indexOf(attr) === -1;
-    }).forEach(function (attr) {
-      el[attr] = result[attr];
-    });
-
+    addAttrs(el, result);
+    addDataSets(el, result);
     return el;
+  }
+
+  function addAttrs(el, result) {
+    var ignores = ['tag', 'classList', 'dataSet'];
+    Object.keys(result).filter(function (attr) {
+      return ignores.indexOf(attr) === -1;
+    }).forEach(function (attr) {
+      el.setAttribute(attr === 'className' ? 'class' : attr, result[attr]);
+    });
+  }
+
+  function addDataSets(el, result) {
+    if (result.dataSet) {
+      Object.keys(result.dataSet).forEach(function (data) {
+        return el.setAttribute('data-' + data, result.dataSet[data]);
+      });
+    }
   }
 
   return createElementBySelector;

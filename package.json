@@ -1,7 +1,7 @@
 {
   "name": "create-element-by-selector.js",
-  "version": "0.1.1",
-  "description": "Selector parser",
+  "version": "0.1.0",
+  "description": "Create element by selector",
   "main": "dist/create-element-by-selector.js",
   "jsnext:main": "es/create-element-by-selector.js",
   "scripts": {
@@ -17,8 +17,7 @@
     "type": "git",
     "url": "git+https://github.com/totora0155/create-element-by-selector.js.git"
   },
-  "keywords": [
-  ],
+  "keywords": [],
   "author": "nju33",
   "license": "MIT",
   "bugs": {
@@ -29,6 +28,7 @@
     "ava": "^0.13.0",
     "babel-preset-es2015-rollup": "^1.1.1",
     "chokidar-cli": "^1.2.0",
+    "jsdom": "^8.2.0",
     "rollup": "^0.25.6",
     "rollup-plugin-babel": "^2.4.0",
     "rollup-plugin-node-resolve": "^1.5.0",
@@ -36,8 +36,14 @@
     "xo": "^0.13.0"
   },
   "xo": {
+    "envs": [
+      "browser"
+    ],
     "esnext": true,
-    "space": 2
+    "space": 2,
+    "ignores": [
+      "es/**"
+    ]
   },
   "dependencies": {
     "selector-parse": "^0.2.0"
