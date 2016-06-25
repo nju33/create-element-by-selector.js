@@ -1,6 +1,6 @@
 {
   "name": "create-element-by-selector.js",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Create element by selector",
   "main": "dist/create-element-by-selector.js",
   "jsnext:main": "es/create-element-by-selector.js",

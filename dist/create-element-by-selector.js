@@ -10,7 +10,7 @@
 }(this, function () { 'use strict';
 
   function selectorParse(selector) {
-    var re = /([#.[]?[^#.\[]+)/g;
+    var re = /([#.[{]?[^#.\[{]+)/g;
     var matches = selector.match(re);
     if (matches) {
       return traverse(matches);
@@ -20,7 +20,21 @@
 
   function traverse(selectors) {
     var result = {};
+    var cache = null;
     selectors.forEach(function (selector) {
+      selector = selector.trim();
+      if (cache !== null) {
+        selector = cache + selector;
+      }
+
+      if (selector[0] === '[') {
+        if (!selector.endsWith(']')) {
+          cache = selector;
+          return;
+        }
+      }
+      cache = null;
+
       var detail = specity(selector.trim());
       if (detail.attr) {
         if (result[detail.attr] && detail.attr === 'class') {
@@ -70,6 +84,11 @@
       var attr = splited[0];
       var val = splited[1] || true;
       return { attr: attr, val: val };
+    } else if (selector[0] === '{' && selector[selector.length - 1] === '}') {
+      return {
+        attr: 'innerText',
+        val: selector.match(/{(.*)}/)[1]
+      };
     }
     return {
       attr: null,
